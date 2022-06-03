@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-public class program
+﻿public class program
 {
     private const string errorMessage = "Ungültige Eingabe";
     private const string continueMessage = "Press [Enter] to continue";
