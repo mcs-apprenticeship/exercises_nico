@@ -50,6 +50,42 @@
             {"4", "Bella Mira 1" },
             {"correctId", "1" },
         },
+        new Dictionary<string, string>
+        {
+            {"question", "Who directed Avatar"},
+            {"1", "Christopher Nolan" },
+            {"2", "James Cameron" },
+            {"3", "Tim Burton"},
+            {"4", "Zack Snyder" },
+            {"correctId", "2" },
+        },
+        new Dictionary<string, string>
+        {
+            {"question", "What's Super Marios Surname"},
+            {"1", "Mario" },
+            {"2", "Luigi" },
+            {"3", "Figini"},
+            {"4", "Mussolini" },
+            {"correctId", "2" },
+        },
+        new Dictionary<string, string>
+        {
+            {"question", "Pi"},
+            {"1", "3.1415926" },
+            {"2", "3.1428571" },
+            {"3", "3.1414213"},
+            {"4", "69" },
+            {"correctId", "1" },
+        },
+        new Dictionary<string, string>
+        {
+            {"question", "Who played Batman in 1989"},
+            {"1", "Christian Bale" },
+            {"2", "Ben Affleck" },
+            {"3", "Robert Pattinson"},
+            {"4", "Michael Keaton" },
+            {"correctId", "4" },
+        },
     };
     private static string[] validAnswers = { "1", "2", "3", "4" };
 
