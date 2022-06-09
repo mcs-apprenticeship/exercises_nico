@@ -66,7 +66,7 @@
             {"2", "Luigi" },
             {"3", "Figini"},
             {"4", "Mussolini" },
-            {"correctId", "2" },
+            {"correctId", "1" },
         },
         new Dictionary<string, string>
         {
@@ -99,6 +99,8 @@
     private const string replayMessage = "Press [Enter] to play again";
     private const string gameLengthMessage = "How many rounds do you wanna play (1-10)";
     private const string askUserMessage = "Choose wisely: ";
+
+    private static readonly ConsoleColor colorBefore = Console.ForegroundColor; 
 
     public static void Main()
     {
@@ -146,17 +148,24 @@
                     {
                         if(answer == question["correctId"])
                         {
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine(correctAnswerMessage);
+                            Console.ForegroundColor = colorBefore;
+
                             Console.WriteLine(continueMessage);
                             Console.ReadLine();
                             Console.Clear();
                             break;
                         }
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(inCorrectAnswerMessage);
+                        Console.ForegroundColor = colorBefore;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(invalidAnswerMessage);
+                        Console.ForegroundColor = colorBefore;
                     }
 
                     Console.WriteLine(continueMessage);
