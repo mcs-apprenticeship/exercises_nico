@@ -18,17 +18,18 @@
 
     private int[] getPerfectNumbers(int amount)
     {
-        List<int> perfectNumbers = new List<int>();
-        int i = 2;
-        while (perfectNumbers.Count() < amount)
+        int[] perfectNumbers = new int[amount];
+        
+        int j = 2;
+        for(int i = 0; i < amount; i++)
         {
-            if(i == getAllDivisors(i).Sum())
+            while(j != getAllDivisors(j).Sum())
             {
-                perfectNumbers.Add(i);
+                j++;
             }
-            i++;
+            perfectNumbers[i] = j++;
         }
-        return perfectNumbers.ToArray();
+        return perfectNumbers;
     }
 
     private int[] getAllDivisors (int num)

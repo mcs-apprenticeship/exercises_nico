@@ -4,6 +4,8 @@
     private const string continueMessage = "Press [Enter] to continue";
     private const string line = "-----------------------------------------------";
     private const string question = "type a Number between 1 and 7: ";
+            
+    private static readonly int[] allowedNumbers = { 1, 2, 3, 4, 5, 6, 7 };
 
     public static void Main()
     {
@@ -13,28 +15,27 @@
             Console.Write(question);
             string input = Console.ReadKey().KeyChar.ToString();
             Console.WriteLine();
-            if(isValid(input))
+            if(int.TryParse(input, out int num))
             {
-                Console.WriteLine(weekDays(int.Parse(input)));
+                Console.WriteLine(weekDays(num));
                 Console.WriteLine(continueMessage);
-                Console.ReadLine();
-                Console.Clear();
-                continue;
             }
-            Console.WriteLine(errorMessage);
-            Console.WriteLine(continueMessage);
+            else
+            {
+                Console.WriteLine(errorMessage);
+                Console.WriteLine(continueMessage);
+            }
             Console.ReadLine();
             Console.Clear();
         }
     }
 
-    private static bool isValid(string stringToValidate)
+    private static bool isValid(string stringToValidate, out int num)
     {
-        if(int.TryParse(stringToValidate, out int intToValidate))
+        if(int.TryParse(stringToValidate, out num))
         {
-            int[] allowedNumbers = { 1, 2, 3, 4, 5, 6, 7 };
 
-            return allowedNumbers.Contains(intToValidate);
+            return allowedNumbers.Contains(num);
         }
         return false;
     }
@@ -50,6 +51,7 @@
             5 => "Friday",
             6 => "Saturday",
             7 => "Sunday",
+            _ => errorMessage
         };
     }
 }

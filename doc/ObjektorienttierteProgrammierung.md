@@ -54,3 +54,38 @@ public static double Sum (params int[] numbers){
   }
 ```
 
+Tower of Hanoi
+```C#
+private void moveTowers (int amountOfPlates, char from, char to, char other)
+    {
+        if(amountOfPlates == 0)
+        {
+            return;
+        }
+        if(amountOfPlates == 1)
+        {
+            Console.WriteLine($"move from {from} to {to}");
+            return;
+        }
+        ```
+
+![[Pasted image 20220609162319.png]]
+to
+![[Pasted image 20220609162359.png]]
+
+```
+        moveTowers(amountOfPlates - 1, from, other, to);
+```
+![[Pasted image 20220609162359.png]]
+to
+![[Pasted image 20220609162448.png]]
+```
+        moveTowers(1, from, to, other);
+```
+![[Pasted image 20220609162448.png]]
+to
+![[Pasted image 20220609162520.png]]
+```
+        moveTowers(amountOfPlates - 1, other, to, from);
+    }
+```
