@@ -18,13 +18,12 @@
             if(int.TryParse(input, out int num))
             {
                 Console.WriteLine(weekDays(num));
-                Console.WriteLine(continueMessage);
             }
             else
             {
                 Console.WriteLine(errorMessage);
-                Console.WriteLine(continueMessage);
             }
+            Console.WriteLine(continueMessage);
             Console.ReadLine();
             Console.Clear();
         }

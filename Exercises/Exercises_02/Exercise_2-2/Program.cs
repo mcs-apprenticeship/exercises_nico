@@ -109,11 +109,21 @@
             Console.WriteLine();
             Console.ForegroundColor = colorBefore;
 
-            Console.WriteLine(replayMessage);
-            Console.ReadLine();
-            Console.Clear();
+            waitForContinue(replayMessage);
 
         }
+    }
+
+    private static void printResult (int correct, int amount)
+    {
+
+    }
+
+    private static void waitForContinue (string message)
+    {
+            Console.WriteLine(message);
+            Console.ReadLine();
+            Console.Clear();
     }
 
     private static Dictionary<program.Question, string> getQuestion (string question, string answer1, string answer2, string answer3, string answer4, string correctAnswer)

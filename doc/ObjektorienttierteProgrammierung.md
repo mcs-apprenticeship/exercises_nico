@@ -89,3 +89,58 @@ to
         moveTowers(amountOfPlates - 1, other, to, from);
     }
 ```
+
+## Inheritance
+```c#
+namespace Samples
+{
+    class Animal
+    {
+        public double Weight = 0.0;
+  
+        public void Speak()
+        {
+            Console.WriteLine($"?, my weight is {Weight}");
+        }
+  
+        public virtual void Move()
+        {
+            Console.WriteLine("The animal starts moving ...");
+        }
+    }
+
+    class Cat : Animal
+    {
+        public string Name;
+        public new void Speak()
+        {
+            Console.WriteLine($"Meow, my weight is {Weight}");
+        }
+
+        public override void Move()
+        {
+            Console.WriteLine("The cat starts moving ...");
+        }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            var animal = new Animal() { Weight = -1.0 };
+            animal.Speak();
+            animal.Move();
+
+            var cat = new Cat() { Weight = 2750.0 };
+            cat.Speak();
+            cat.Move();
+
+            Animal luna = new Cat() { Weight = 1000 };
+            luna.Speak();
+            luna.Move();
+        }
+    }
+}
+```
+`luna` executes `Speak()` from the `Animal` class.
+`luna` executes `Move()` from the `Cat` class.
