@@ -6,27 +6,27 @@
 
         Point p1 = new()
         {
-            x = 1,
-            y = 1
+            X = 1,
+            Y = 1
         };
         Point p2 = new()
         {
-            x = 7,
-            y = 3
+            X = 7,
+            Y = 3
         };
         Point p3 = new()
         {
-            x = 7,
-            y = 3
+            X = 7,
+            Y = 3
         };
 
-        Console.WriteLine ($"A = {Geometry.perimeterTriangle (p1, p2, p3)}");
+        Console.WriteLine ($"U = {Geometry.perimeterTriangle (p1, p2, p3)}");
         Geometry.printTriangle(p1, p2, p3);
 
         Console.WriteLine ();
-        p3.x = 4;
+        p3.X = 4;
 
-        Console.WriteLine(Geometry.perimeterTriangle(p1, p2, p3));
+        Console.WriteLine($"U = {Geometry.perimeterTriangle(p1, p2, p3)}");
         Geometry.printTriangle(p1, p2, p3);
     }
 }
@@ -35,8 +35,8 @@ public static class Geometry
 {
     private static double distance (Point point1, Point point2)
     {
-        double xDistance = point1.x - point2.x;
-        double yDistance = point1.y - point2.y;
+        double xDistance = point1.X - point2.X;
+        double yDistance = point1.Y - point2.Y;
 
         double result = Math.Sqrt(Math.Pow(xDistance, 2) + Math.Pow(yDistance, 2));
         return result;
@@ -55,7 +55,7 @@ public static class Geometry
         double minDistance = 0;
         foreach(Point point in points )
         {
-            double distanceToZero = distance(point, new Point() { x = 0, y = 0 });
+            double distanceToZero = distance(point, new Point() { X = 0, Y = 0 });
             if(distanceToZero < minDistance || pointLeft == null)
             {
                 pointLeft = point;
@@ -69,7 +69,7 @@ public static class Geometry
         minDistance = 0;
         foreach(Point point in points)
         {
-            double distanceToY = point.y;
+            double distanceToY = point.Y;
             if (distanceToY < minDistance || pointRight == null)
             {
                 pointRight = point;
@@ -81,17 +81,17 @@ public static class Geometry
 
         Point pointTop = points[0];
 
-        Console.WriteLine($"    {pointTop.x}/{pointTop.y}");
+        Console.WriteLine($"    {pointTop.X}/{pointTop.Y}");
         Console.WriteLine($"    ╱╲");
         Console.WriteLine($"   ╱  ╲");
         Console.WriteLine($"  ╱    ╲");
         Console.WriteLine($" ╱______╲");
-        Console.WriteLine($"{pointLeft.x}/{pointLeft.y}   {pointRight.x}/{pointRight.y}");
+        Console.WriteLine($"{pointLeft.X}/{pointLeft.Y}   {pointRight.X}/{pointRight.Y}");
     }
 }
 
 public class Point
 {
-    public int x;
-    public int y;
+    public int X { get; set; }
+    public int Y { get; set; }
 }
