@@ -144,3 +144,4 @@ namespace Samples
 ```
 `luna` executes `Speak()` from the `Animal` class.
 `luna` executes `Move()` from the `Cat` class.
+## Abstrakte Klassen

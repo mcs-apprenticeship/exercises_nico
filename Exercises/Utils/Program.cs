@@ -2,13 +2,20 @@
 {
     public class Program { public static void Main () { } }
 
-    public static class UserInput
+    public class UserInput
     {
-        public static int GetInt(Func<int, bool> validator)
+        UiUtils uiUtils;
+
+        public UserInput(int width)
+        {
+            uiUtils = new UiUtils(width);
+        }
+
+        public int GetInt(Func<int, bool> validator)
         {
             string numAsString = string.Empty;
 
-            UiUtils.StartLine(": ", UiUtils.BorderType.Bottom);
+            uiUtils.StartLine(": ", UiUtils.BorderType.Bottom);
             while (true)
             {
                 ConsoleKeyInfo input = Console.ReadKey();
@@ -27,7 +34,7 @@
                         }
                     }
                     numAsString = String.Empty;
-                    UiUtils.StartLine(": ", UiUtils.BorderType.Bottom);
+                    uiUtils.StartLine(": ", UiUtils.BorderType.Bottom);
                 }
                 else
                 {
@@ -35,13 +42,13 @@
                     {
                         numAsString = numAsString.Remove(numAsString.Length - 1);
                     }
-                    UiUtils.ClearCurrentConsoleLine();
-                    UiUtils.StartLine($": {numAsString}", UiUtils.BorderType.Bottom);
+                    uiUtils.ClearCurrentConsoleLine();
+                    uiUtils.StartLine($": {numAsString}", UiUtils.BorderType.Bottom);
                 }
             }
         }
 
-        public static int choose(Func<object?> printBefore, params string[] choices)
+        public int choose(Func<object?> printBefore, params string[] choices)
         {
             int input = 0;
             while (input > choices.Length || input < 1)
@@ -51,12 +58,12 @@
 
                 for (int i = 1; i <= choices.Length; i++)
                 {
-                    UiUtils.PrintLine($" {i}: {choices[i - 1]}");
+                    uiUtils.PrintLine($" {i}: {choices[i - 1]}");
                 }
 
 
-                UiUtils.PrintBorder(UiUtils.BorderType.Light);
-                UiUtils.StartLine(": ", UiUtils.BorderType.Bottom);
+                uiUtils.PrintBorder(UiUtils.BorderType.Light);
+                uiUtils.StartLine(": ", UiUtils.BorderType.Bottom);
                 string inputString = Console.ReadLine();
                 int.TryParse(inputString, out input);
             }
@@ -64,7 +71,7 @@
         }
     }
 
-    public static class UiUtils
+    public class UiUtils
     {
         public enum BorderType
         {
@@ -74,17 +81,22 @@
             Bottom,
         }
 
-        private const int width = 40;
+        private int width;
 
-        public static void PrintHeader()
+        public UiUtils(int width)
+        {
+            this.width = width;
+        }
+
+        public void PrintHeader(string name)
         {
             Console.Clear();
             PrintBorder(BorderType.Top);
-            PrintLine("Deadline");
+            PrintLine(name);
             PrintBorder(BorderType.Bold);
         }
 
-        public static void PrintLine(string content, ConsoleColor color = ConsoleColor.White)
+        public void PrintLine(string content, ConsoleColor color = ConsoleColor.White)
         {
             ConsoleColor colorBefore = Console.ForegroundColor;
             Console.Write("┃");
@@ -94,7 +106,7 @@
             Console.WriteLine("┃");
         }
 
-        public static void StartLine(string content, BorderType borderAfter)
+        public void StartLine(string content, BorderType borderAfter)
         {
             PrintLine(content);
             PrintBorder(borderAfter);
@@ -102,7 +114,7 @@
 
         }
 
-        public static void ClearCurrentConsoleLine()
+        public void ClearCurrentConsoleLine()
         {
             int currentLineCursor = Console.CursorTop;
             Console.SetCursorPosition(0, Console.CursorTop);
@@ -110,7 +122,7 @@
             Console.SetCursorPosition(0, currentLineCursor);
         }
 
-        public static void PrintBorder(BorderType bt)
+        public void PrintBorder(BorderType bt)
         {
             switch (bt)
             {
@@ -128,7 +140,7 @@
                     break;
             }
         }
-        private static void PrintBorder(char first, char border, char last)
+        private void PrintBorder(char first, char border, char last)
         {
             Console.WriteLine($"{first}{String.Concat(Enumerable.Repeat(border, width))}{last}");
         }

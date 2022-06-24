@@ -1,6 +1,9 @@
 ﻿namespace Exercises_03{
     class Program
     {
+        private static UiUtils uiUtils = new UiUtils(40);
+        private static UserInput userInput = new UserInput(40);
+
         private static Deadline dl = new(
             new DateTime(),
             new Duration()
@@ -22,7 +25,7 @@
                 }
 
                 PrintHead();
-                int input = UserInput.choose(PrintHead, "reset date", "reset time", "reload");
+                int input = userInput.choose(PrintHead, "reset date", "reset time", "reload");
                 int i = input;
                 switch (input)
                 {
@@ -76,83 +79,83 @@
         {
             if (dl.InDeadline())
             {
-                UiUtils.PrintLine("In deadline!", ConsoleColor.Green);
+                uiUtils.PrintLine("In deadline!", ConsoleColor.Green);
             }
             else
             {
-                UiUtils.PrintLine("Not in deadline!", ConsoleColor.Red);
+                uiUtils.PrintLine("Not in deadline!", ConsoleColor.Red);
             }
         }
 
         private static object? PrintHead()
         {
-            UiUtils.PrintHeader();
-            UiUtils.PrintLine($"Date: {GetYears()}/{GetMonths()}/{GetDays()}");
-            UiUtils.PrintLine($"Time: {GetHours()}:{GetMins()}:{GetSecs()}");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
+            uiUtils.PrintHeader("Deadline");
+            uiUtils.PrintLine($"Date: {GetYears()}/{GetMonths()}/{GetDays()}");
+            uiUtils.PrintLine($"Time: {GetHours()}:{GetMins()}:{GetSecs()}");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
             PrintInDeadline();
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
             return null;
         }
 
         private static void SetTime()
         {
             dl.ResetTime();
-            UiUtils.PrintHeader();
-            UiUtils.PrintLine($"Date: {GetYears()}/{GetMonths()}/{GetDays()}");
-            UiUtils.PrintLine($"Time:");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            UiUtils.PrintLine("Hours?");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            int h = UserInput.GetInt(IsValidHour);
+            uiUtils.PrintHeader("Deadline");
+            uiUtils.PrintLine($"Date: {GetYears()}/{GetMonths()}/{GetDays()}");
+            uiUtils.PrintLine($"Time:");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            uiUtils.PrintLine("Hours?");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            int h = userInput.GetInt(IsValidHour);
             dl.SetHour(h);
             Console.Clear();
-            UiUtils.PrintHeader();
-            UiUtils.PrintLine($"Date: {GetYears()}/{GetMonths()}/{GetDays()}");
-            UiUtils.PrintLine($"Time: {GetHours()}");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            UiUtils.PrintLine("Minutes?");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            int m = UserInput.GetInt(IsValidMin);
+            uiUtils.PrintHeader("Deadline");
+            uiUtils.PrintLine($"Date: {GetYears()}/{GetMonths()}/{GetDays()}");
+            uiUtils.PrintLine($"Time: {GetHours()}");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            uiUtils.PrintLine("Minutes?");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            int m = userInput.GetInt(IsValidMin);
             dl.SetMin(m);
             Console.Clear();
-            UiUtils.PrintHeader();
-            UiUtils.PrintLine($"Date: {GetYears()}/{GetMonths()}/{GetDays()}");
-            UiUtils.PrintLine($"Time: {GetHours()}:{GetMins()}");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            UiUtils.PrintLine("Seconds?");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            int s = UserInput.GetInt(IsValidSec);
+            uiUtils.PrintHeader("Deadline");
+            uiUtils.PrintLine($"Date: {GetYears()}/{GetMonths()}/{GetDays()}");
+            uiUtils.PrintLine($"Time: {GetHours()}:{GetMins()}");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            uiUtils.PrintLine("Seconds?");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            int s = userInput.GetInt(IsValidSec);
             dl.SetSec(s);
         }
 
         private static void SetDate()
         {
-            UiUtils.PrintHeader();
-            UiUtils.PrintLine("Date:");
-            if (dlSet) UiUtils.PrintLine($"Time: {GetHours()}:{GetMins()}:{GetSecs()}");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            UiUtils.PrintLine("Date year?");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            int year = UserInput.GetInt(IsValidYear);
+            uiUtils.PrintHeader("Deadline");
+            uiUtils.PrintLine("Date:");
+            if (dlSet) uiUtils.PrintLine($"Time: {GetHours()}:{GetMins()}:{GetSecs()}");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            uiUtils.PrintLine("Date year?");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            int year = userInput.GetInt(IsValidYear);
             dl.SetYear(year);
             Console.Clear();
-            UiUtils.PrintHeader();
-            UiUtils.PrintLine($"Date: {GetYears()}");
-            if (dlSet) UiUtils.PrintLine($"Time: {GetHours()}:{GetMins()}:{GetSecs()}");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            UiUtils.PrintLine("Date Month?");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            int month = UserInput.GetInt(IsValidMonth);
+            uiUtils.PrintHeader("Deadline");
+            uiUtils.PrintLine($"Date: {GetYears()}");
+            if (dlSet) uiUtils.PrintLine($"Time: {GetHours()}:{GetMins()}:{GetSecs()}");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            uiUtils.PrintLine("Date Month?");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            int month = userInput.GetInt(IsValidMonth);
             dl.SetMonth(month);
             Console.Clear();
-            UiUtils.PrintHeader();
-            UiUtils.PrintLine($"Date: {GetYears()}/{GetMonths()}");
-            if (dlSet) UiUtils.PrintLine($"Time: {GetHours()}:{GetMins()}:{GetSecs()}");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            UiUtils.PrintLine("Date Day?");
-            UiUtils.PrintBorder(UiUtils.BorderType.Light);
-            int day = UserInput.GetInt(IsValidDay);
+            uiUtils.PrintHeader("Deadline");
+            uiUtils.PrintLine($"Date: {GetYears()}/{GetMonths()}");
+            if (dlSet) uiUtils.PrintLine($"Time: {GetHours()}:{GetMins()}:{GetSecs()}");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            uiUtils.PrintLine("Date Day?");
+            uiUtils.PrintBorder(UiUtils.BorderType.Light);
+            int day = userInput.GetInt(IsValidDay);
             dl.SetDay(day);
         }
 
