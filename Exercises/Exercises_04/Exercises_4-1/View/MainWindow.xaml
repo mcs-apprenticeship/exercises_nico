@@ -1,0 +1,132 @@
+﻿<Window x:Class="Exercises_4_1.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:view="clr-namespace:Exercises_4_1.View"
+        xmlns:viewModel="clr-namespace:Exercises_4_1.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800"
+        
+        xmlns:dev="http://schemas.microsoft.com/expression/blend/2008"
+        dev:DataContext="{dev:DesignInstance viewModel:MainWindowViewModel, IsDesignTimeCreatable=True}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Colors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Background" Value="#f4f7fa"/>
+                <Setter Property="Padding" Value="13"/>
+            </Style>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Margin="10" BorderBrush="{StaticResource Borders}" BorderThickness="2" CornerRadius="8" >
+                <Grid>
+                    <Grid.OpacityMask>
+                        <VisualBrush Visual="{Binding ElementName=Border1}"></VisualBrush>
+                    </Grid.OpacityMask>
+                    <Border x:Name="Border1" VerticalAlignment="Stretch" CornerRadius="10" Background="{StaticResource Background}" Margin="5"/>
+                    <Grid>
+                        <ListView x:Name="myListView" ItemsSource="{Binding Contacts, Mode=OneWay}" Background="Transparent" BorderThickness="0" Padding="0" Margin="-1, -1, -1, -1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" MouseLeftButtonUp="myListView_MouseLeftButtonUp" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    
+                                    <view:UserControl1 Data="{Binding FullName}" Margin="-5, 0, 0, 0" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" BorderThickness="2" CornerRadius="8" BorderBrush="{StaticResource Borders}" Margin="10, 5, 5, 10">
+                    <Grid>
+                        <Grid.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=Border3}"/>
+                        </Grid.OpacityMask>
+                        <Border x:Name="Border3" Background="Black" CornerRadius="7"></Border>
+                        <Button  FontSize="30" VerticalContentAlignment="Center" Padding="0" Click="AddContact_OnClick" BorderThickness="0" Background="{StaticResource ElementBackground}" >➕</Button>
+                    </Grid>
+                </Border>
+                <Border Grid.Column="1" BorderThickness="2" CornerRadius="8" BorderBrush="{StaticResource Borders}" Margin="5, 5, 10, 10">
+                    <Grid>
+                        <Grid.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=Border4}"/>
+                        </Grid.OpacityMask>
+                        <Border x:Name="Border4" Background="Black" CornerRadius="7"></Border>
+                        <Button FontSize="30" VerticalContentAlignment="Center" Padding="0" BorderThickness="0" Background="{StaticResource ElementBackground}" Click="RemoveContact_OnClick" IsEnabled="{Binding CanEdit}">🗑️</Button>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Margin="10" Visibility="{Binding CanEdit, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0">Avatar</Label>
+            
+            <Label Grid.Column="0" Grid.Row="2">Gender</Label>
+            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <RadioButton GroupName="Gender" Margin="5" Checked="Male_OnClick" IsChecked="{Binding CurrentContact.IsMale, Mode=OneWay}">Male</RadioButton>
+                <RadioButton Checked="Female_Onclick" GroupName="Gender" Margin="5" IsChecked="{Binding CurrentContact.IsFemale, Mode=OneWay}">Female</RadioButton>
+                <RadioButton Checked="Other_Onclick" GroupName="Gender" Margin="5" IsChecked="{Binding CurrentContact.IsOther, Mode=OneWay}">Other</RadioButton>
+            </StackPanel>
+
+            <Label Grid.Column="0" Grid.Row="3">First Name</Label>
+            <view:TextBoxFancy TextBoxValue="{Binding CurrentContact.FirstName, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" LostFocus="ReloadListView"></view:TextBoxFancy>
+
+            <Label Grid.Column="0" Grid.Row="4">Last Name</Label>
+            <view:TextBoxFancy TextBoxValue="{Binding CurrentContact.LastName, Mode=TwoWay}" Grid.Column="1" Grid.Row="4" LostFocus="ReloadListView"></view:TextBoxFancy>
+
+            <Label Grid.Column="0" Grid.Row="5">Married</Label>
+            <CheckBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="5" IsChecked="{Binding CurrentContact.IsMarried, Mode=TwoWay}"/>
+
+            <Label Grid.Column="0" Grid.Row="6">Weight</Label>
+
+            <Grid Grid.Column="1" Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="90"/>
+                </Grid.ColumnDefinitions>
+                <Slider Value="{Binding CurrentContact.Weight}" Grid.Column="0" x:Name="weightSlider"  VerticalAlignment="Center" Margin="5" Minimum="50" Maximum="150" TickFrequency=".5" IsSnapToTickEnabled="True"/>
+                
+                <view:TextBoxFancy Grid.Column="1" TextBoxValue="{Binding ElementName=weightSlider, Path=Value, UpdateSourceTrigger=LostFocus, Mode=TwoWay}" TextBoxUnit="kg" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Exercises_4_1.View.TextBox"
+             x:Name="self"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Exercises_4_1.View"
+             mc:Ignorable="d" 
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Colors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBox">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Background" Value="#f4f7fa"/>
+                <Setter Property="Padding" Value="6"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Grid.Column="1" Grid.Row="3" CornerRadius="8" BorderThickness="1.5" BorderBrush="{StaticResource Borders}" Margin="5">
+        <Grid>
+            <Grid.OpacityMask>
+                <VisualBrush Visual="{Binding ElementName=Border2}"></VisualBrush>
+            </Grid.OpacityMask>
+            <Border x:Name="Border2" CornerRadius="7" Background="{StaticResource Background}"/>
+            <TextBox Text="{Binding Path=Text, ElementName=self}"></TextBox>
+        </Grid>
+    </Border>
+</UserControl>

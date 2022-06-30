@@ -10,6 +10,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <local:SearchBox Data="{Binding Needle, Mode=TwoWay}"></local:SearchBox>
+        <local:SearchBox Data="Hello World"></local:SearchBox>
     </Grid>
 </Window>

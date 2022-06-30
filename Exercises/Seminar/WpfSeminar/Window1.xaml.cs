@@ -22,7 +22,7 @@ namespace WpfSeminar
         public Window1()
         {
             InitializeComponent();
-            DataContext = new Window1ViewModel();
+            //DataContext = new Window1ViewModel();
         }
     }
 }

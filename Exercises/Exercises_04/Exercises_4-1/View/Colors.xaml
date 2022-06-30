@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="BackgroundColor">White</Color>
+    <SolidColorBrush x:Key="Background" Color="White"/>
+    <SolidColorBrush x:Key="ElementBackground" Color="#f4f7fa"/>
+    <SolidColorBrush x:Key="Borders" Color="#dfdfdf"/>
+    <SolidColorBrush x:Key="Active" Color="#0085fc"/>
+    <SolidColorBrush x:Key="InActive" Color="White"/>
+    <SolidColorBrush x:Key="InActiveForeGround" Color="Black"/>
+</ResourceDictionary>

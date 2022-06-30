@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Exercises_4_1.View.UserControl1"
+             x:Name="self"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Exercises_4_1"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Colors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <TextBlock FontSize="12" FontFamily="Arial" VerticalAlignment="Top" Padding="7" Background="{StaticResource InActive}" Foreground="{StaticResource InActiveForeGround}" Text="{Binding Data, ElementName=self}" HorizontalAlignment="Stretch"></TextBlock>
+        <Line  Stroke="{StaticResource Borders}" X1="0" Y1="1" X2="226" Y2="1" StrokeThickness="2"/>
+    </StackPanel>
+</UserControl>
